@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CDN } from '../config'
 
 const items = [
-  { id: 'kuchyne',            label: 'Kuchyně',             color: '#ccc0b0', img: '/images/vyrobky/kuchyne.jpg' },
-  { id: 'skrine',             label: 'Skříně',              color: '#c2b8a8', img: '/images/vyrobky/skrine.jpg' },
-  { id: 'jidelni-stoly',      label: 'Jídelní stoly',       color: '#d4c8b8', img: '/images/vyrobky/jidelni-stoly.jpg' },
-  { id: 'televizni-skrinky',  label: 'Skříňky',   color: '#bdb4a8', img: '/images/vyrobky/skrinky.jpg' },
-  { id: 'komody',             label: 'Komody',              color: '#c8bfb2', img: '/images/vyrobky/komody.jpg' },
-  { id: 'postele',            label: 'Postele',             color: '#b8b2a8', img: '/images/vyrobky/postele.jpg' },
-  { id: 'koupelny',           label: 'Koupelny',            color: '#d0c8bc', img: '/images/vyrobky/koupelny.jpg' },
-  { id: 'knihovny',           label: 'Knihovny',            color: '#c4bab0', img: '/images/vyrobky/knihovny.jpg' },
+  { id: 'kuchyne',            label: 'Kuchyně',             color: '#ccc0b0', img: `${CDN}/images/vyrobky/kuchyne.jpg` },
+  { id: 'skrine',             label: 'Skříně',              color: '#c2b8a8', img: `${CDN}/images/vyrobky/skrine.jpg` },
+  { id: 'jidelni-stoly',      label: 'Jídelní stoly',       color: '#d4c8b8', img: `${CDN}/images/vyrobky/jidelni-stoly.jpg` },
+  { id: 'televizni-skrinky',  label: 'Skříňky',             color: '#bdb4a8', img: `${CDN}/images/vyrobky/skrinky.jpg` },
+  { id: 'komody',             label: 'Komody',              color: '#c8bfb2', img: `${CDN}/images/vyrobky/komody.jpg` },
+  { id: 'postele',            label: 'Postele',             color: '#b8b2a8', img: `${CDN}/images/vyrobky/postele.jpg` },
+  { id: 'koupelny',           label: 'Koupelny',            color: '#d0c8bc', img: `${CDN}/images/vyrobky/koupelny.jpg` },
+  { id: 'knihovny',           label: 'Knihovny',            color: '#c4bab0', img: `${CDN}/images/vyrobky/knihovny.jpg` },
 ]
 
 export default function CoVyrabime() {

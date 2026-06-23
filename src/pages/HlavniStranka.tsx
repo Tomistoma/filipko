@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { CDN } from '../config'
 import PhotoCarousel from '../components/PhotoCarousel'
 import ProjectCarousel from '../components/ProjectCarousel'
 import InstagramFeed from '../components/InstagramFeed'
@@ -60,7 +61,7 @@ export default function HlavniStranka() {
           }}
         >
           <img
-            src="/images/poetrait.jpg"
+            src={`${CDN}/images/poetrait.jpg`}
             alt="Filip Kopáček"
             style={{
               maxHeight: '520px',

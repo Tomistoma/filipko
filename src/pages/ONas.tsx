@@ -1,3 +1,5 @@
+import { CDN } from '../config'
+
 export default function ONas() {
   return (
     <div style={{ paddingTop: '72px' }}>
@@ -88,7 +90,7 @@ export default function ONas() {
         {/* Right column — portrait + belief section */}
         <div>
           <img
-            src="/images/filip.jpg"
+            src={`${CDN}/images/filip.jpg`}
             alt="Filip Kopáček"
             style={{
               width: '100%',

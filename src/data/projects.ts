@@ -1,3 +1,5 @@
+import { CDN } from '../config'
+
 export interface Project {
   id: number
   title: string
@@ -16,7 +18,7 @@ export const projects: Project[] = [
     location: 'Praha — Holešovice',
     category: 'Kuchyně',
     year: '2025',
-    image: '/images/projekt-1.jpg',
+    image: `${CDN}/images/projekt-1.jpg`,
     description: 'Kuchyně z masivního dubu s ostrůvkem a vestavěnými spotřebiči.',
     gallery: [
       'IMG_0873.JPG',
@@ -38,7 +40,7 @@ export const projects: Project[] = [
     location: 'Praha - Braník',
     category: 'Nábytek',
     year: '2025',
-    image: '/images/projekt-2.jpg',
+    image: `${CDN}/images/projekt-2.jpg`,
     description: 'Vestavěné skříně do celé délky ložnice z bílé MDF s dubovými úchytkami.',
     gallery: [
       'IMG_4398.jpg',
@@ -67,7 +69,7 @@ export const projects: Project[] = [
     location: 'Praha — Bašť',
     category: 'Kuchyně',
     year: '2024',
-    image: '/images/projekt-3.jpg',
+    image: `${CDN}/images/projekt-3.jpg`,
     description: 'Propojená kuchyně s jídelní částí. Kuchyňský blok z ořechové dýhy.',
     gallery: [
       'IMG_4582.jpg',
@@ -90,7 +92,7 @@ export const projects: Project[] = [
     location: 'Praha — Košíře',
     category: 'Nábytek',
     year: '2024',
-    image: '/images/projekt-4.jpg',
+    image: `${CDN}/images/projekt-4.jpg`,
     description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
     gallery: [
       'IMG_4582.jpg',
@@ -113,7 +115,7 @@ export const projects: Project[] = [
     location: 'Mírovice',
     category: 'Nábytek',
     year: '2024',
-    image: '/images/projekt-4.jpg',
+    image: `${CDN}/images/projekt-4.jpg`,
     description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
     gallery: [],
   },
@@ -123,7 +125,7 @@ export const projects: Project[] = [
     location: 'Praha — Chodov',
     category: 'Nábytek',
     year: '2024',
-    image: '/images/projekt-4.jpg',
+    image: `${CDN}/images/projekt-4.jpg`,
     description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
     gallery: [],
   },

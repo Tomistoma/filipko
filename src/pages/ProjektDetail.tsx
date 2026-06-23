@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { CDN } from '../config'
 import { projects } from '../data/projects'
 
 function GalleryImage({ src, alt }: { src: string; alt: string }) {
@@ -37,7 +38,7 @@ function GalleryImage({ src, alt }: { src: string; alt: string }) {
 }
 
 function getGallery(projectId: number, filenames: string[]): string[] {
-  return filenames.map((f) => `/images/projekty/projekt${projectId}/${f}`)
+  return filenames.map((f) => `${CDN}/images/projekty/projekt${projectId}/${f}`)
 }
 
 export default function ProjektDetail() {

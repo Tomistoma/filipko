@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
+import { CDN } from '../config'
 
 const slides = [
-  { src: '/images/foto-1.jpg' },
-  { src: '/images/foto-2.jpg' },
-  { src: '/images/foto-3.jpg' },
-  { src: '/images/foto-4.jpg' },
-  { src: '/images/foto-5.jpg' },
+  { src: `${CDN}/images/foto-1.jpg` },
+  { src: `${CDN}/images/foto-2.jpg` },
+  { src: `${CDN}/images/foto-3.jpg` },
+  { src: `${CDN}/images/foto-4.jpg` },
+  { src: `${CDN}/images/foto-5.jpg` },
 ]
 
 const INTERVAL = 8000
