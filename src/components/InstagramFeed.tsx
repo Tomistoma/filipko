@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 const FEED_ID = 'nyFSm0h5Cn83CHlYN4hk'
 
-// Tell TypeScript about the Behold custom element
-declare global {
+// Tell TypeScript about the Behold custom element (React 19 uses React.JSX namespace)
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'behold-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {

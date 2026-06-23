@@ -14,11 +14,6 @@ export default function ProjectCarousel() {
 
   const maxIndex = projects.length - VISIBLE
 
-  // One slide step in pure CSS:
-  // card width = (100% - (VISIBLE-1)*GAP) / VISIBLE
-  // step       = card width + GAP = (100% + GAP) / VISIBLE
-  // translateX = -index * step
-  const step = `calc((100% + ${GAP}px) / ${VISIBLE})`
   const offset = index === 0 ? '0px' : `calc(-${index} * (100% + ${GAP}px) / ${VISIBLE})`
 
   return (
