@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.static(join(__dirname, 'dist')))
 
-// SPA fallback — all unmatched routes serve index.html
-app.get('*', (_req, res) => {
+// SPA fallback — all unmatched routes serve index.html (app.use works in Express 4 and 5)
+app.use((_req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'))
 })
 
