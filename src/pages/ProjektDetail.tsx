@@ -20,20 +20,24 @@ function GalleryImage({ src, alt }: { src: string; alt: string }) {
   }, [])
 
   return (
-    <img
-      ref={ref}
-      src={src}
-      alt={alt}
-      onLoad={() => setLoaded(true)}
-      style={{
-        display: 'block',
-        width: '100%',
-        marginBottom: '6px',
-        breakInside: 'avoid',
-        opacity: visible && loaded ? 1 : 0,
-        transition: 'opacity 2s ease',
-      }}
-    />
+    <div style={{ position: 'relative', aspectRatio: '4 / 3', backgroundColor: '#f5f5f4', overflow: 'hidden' }}>
+      <img
+        ref={ref}
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          opacity: visible && loaded ? 1 : 0,
+          transition: 'opacity 2s ease',
+        }}
+      />
+    </div>
   )
 }
 
@@ -86,9 +90,6 @@ export default function ProjektDetail() {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end' }}>
           <div>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '1.25rem' }}>
-              Projekt #{String(project.id).padStart(2, '0')}
-            </p>
             <h1
               style={{
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
@@ -106,7 +107,6 @@ export default function ProjektDetail() {
           <div style={{ display: 'flex', gap: '4rem', justifyContent: 'flex-end' }}>
             {[
               { label: 'Lokace', value: project.location },
-              { label: 'Kategorie', value: project.category },
               { label: 'Rok', value: project.year },
             ].map((item) => (
               <div key={item.label}>
@@ -137,7 +137,7 @@ export default function ProjektDetail() {
             </p>
           </div>
         ) : (
-          <div style={{ columns: '2 500px', columnGap: '6px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem 2rem' }}>
             {gallery.map((src, i) => (
               <GalleryImage
                 key={src}

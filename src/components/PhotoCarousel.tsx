@@ -16,6 +16,7 @@ export default function PhotoCarousel() {
   const [current, setCurrent] = useState(0)
   const [previous, setPrevious] = useState<number | null>(null)
   const imgRefs = useRef<(HTMLImageElement | null)[]>([])
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Preload all slides up front so cross-fade transitions are smooth from slide 1.
   useEffect(() => {
@@ -39,19 +40,27 @@ export default function PhotoCarousel() {
     }
   }, [current])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startTimer = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
       setCurrent((prev) => {
         setPrevious(prev)
         return (prev + 1) % slides.length
       })
     }, INTERVAL)
-    return () => clearInterval(timer)
+  }
+
+  useEffect(() => {
+    startTimer()
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [])
 
   const handleDotClick = (i: number) => {
     setPrevious(current)
     setCurrent(i)
+    startTimer()
   }
 
   return (
@@ -59,7 +68,7 @@ export default function PhotoCarousel() {
       style={{
         position: 'relative',
         width: '100%',
-        height: '80vh',
+        height: 'calc(100vh - 72px)',
         overflow: 'hidden',
         // Neutral background — if a gap ever appeared it won't flash black
         backgroundColor: '#c7c0b8',

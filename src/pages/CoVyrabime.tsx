@@ -19,80 +19,61 @@ export default function CoVyrabime() {
   return (
     <div style={{ paddingTop: '72px' }}>
 
-      {/* Page header */}
-      <section style={{ padding: '5rem 2rem 4rem', maxWidth: '1280px', margin: '0 auto' }}>
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '1.25rem' }}>
-          Naše služby
-        </p>
-        <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 200, letterSpacing: '-0.02em', color: '#1c1917', margin: 0, lineHeight: 1.1 }}>
-          Co vyrábíme
-        </h1>
-      </section>
-
-      {/* 2-column full-width grid */}
+      {/* 2-column grid, inset from the viewport edges */}
       <div
         style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 2rem',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '4px',
+          gap: '3rem 2rem',
         }}
       >
         {items.map((item) => (
-          <div
-            key={item.id}
-            onMouseEnter={() => setHovered(item.id)}
-            onMouseLeave={() => setHovered(null)}
-            style={{
-              position: 'relative',
-              aspectRatio: '4 / 3',
-              backgroundColor: item.color,
-              overflow: 'hidden',
-              cursor: 'default',
-            }}
-          >
-            {/* Placeholder / real image */}
-            <img
-              src={item.img}
-              alt={item.label}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                transform: hovered === item.id ? 'scale(1.04)' : 'scale(1)',
-                transition: 'transform 0.6s ease',
-              }}
-            />
-
-            {/* Wood grain texture on placeholder */}
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              backgroundImage: `repeating-linear-gradient(87deg, transparent, transparent 60px, rgba(255,255,255,0.05) 60px, rgba(255,255,255,0.05) 61px)`,
-            }} />
-
-            {/* Always-visible bottom label */}
+          <div key={item.id}>
             <div
+              onMouseEnter={() => setHovered(item.id)}
+              onMouseLeave={() => setHovered(null)}
               style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to top, rgba(28,25,23,0.65) 0%, rgba(28,25,23,0.08) 45%, transparent 100%)',
-                transition: 'opacity 0.3s ease',
-                opacity: hovered === item.id ? 1 : 0.85,
+                position: 'relative',
+                aspectRatio: '4 / 3',
+                backgroundColor: item.color,
+                overflow: 'hidden',
               }}
-            />
-            <div style={{ position: 'absolute', bottom: '2rem', left: '2.5rem' }}>
-              <h2 style={{
-                fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
-                fontWeight: 300,
-                color: '#fafaf9',
-                letterSpacing: '-0.01em',
-                margin: 0,
-              }}>
-                {item.label}
-              </h2>
+            >
+              {/* Placeholder / real image */}
+              <img
+                src={item.img}
+                alt={item.label}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  transform: hovered === item.id ? 'scale(1.04)' : 'scale(1)',
+                  transition: 'transform 0.6s ease',
+                }}
+              />
+
+              {/* Wood grain texture on placeholder */}
+              <div style={{
+                position: 'absolute', inset: 0, pointerEvents: 'none',
+                backgroundImage: `repeating-linear-gradient(87deg, transparent, transparent 60px, rgba(255,255,255,0.05) 60px, rgba(255,255,255,0.05) 61px)`,
+              }} />
             </div>
+
+            <p style={{
+              fontSize: '1.1rem',
+              fontWeight: 400,
+              color: '#1c1917',
+              letterSpacing: '-0.01em',
+              margin: '1rem 0 0',
+            }}>
+              {item.label}
+            </p>
           </div>
         ))}
       </div>

@@ -29,7 +29,7 @@ export default function HlavniStranka() {
             gap: '2.5rem',
           }}
         >
-          <p style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.9, textAlign: 'right' }}>
+          <p style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.9, textAlign: 'justify' }}>
             Jmenuji se Filip Kopáček a Truhlářstvím za štěstím jsem v myšlenkách začal tvořit už v roce 2021. V té době jsem měl za sebou dva roky v truhlářské dílně, kde jsem se řemeslu začal učit od píky. Ale pojďme úplně na začátek.
           </p>
           <Link
@@ -44,6 +44,7 @@ export default function HlavniStranka() {
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               fontWeight: 500,
+              borderRadius: '9999px',
             }}
           >
             O nás
@@ -57,7 +58,7 @@ export default function HlavniStranka() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: '4rem 3rem',
-            backgroundColor: '#f5f5f4',
+            backgroundColor: '#fafaf9',
           }}
         >
           <img
@@ -88,12 +89,6 @@ export default function HlavniStranka() {
         }}
       >
         <div style={{ position: 'relative' }}>
-          <p style={{
-            fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-            color: '#a8a29e', marginBottom: '2rem',
-          }}>
-            Začněme spolupracovat
-          </p>
           <h2 style={{
             fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
             fontWeight: 200,
@@ -110,11 +105,11 @@ export default function HlavniStranka() {
             to="/kontakt"
             style={{
               display: 'inline-block',
-              padding: '1.1rem 3.5rem',
+              padding: '1.6rem 5.5rem',
               backgroundColor: '#1c1917',
               color: '#fafaf9',
               textDecoration: 'none',
-              fontSize: '0.75rem',
+              fontSize: '1rem',
               fontWeight: 500,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',

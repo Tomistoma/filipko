@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 const links = [
-  { to: '/', label: 'Hlavní stránka' },
   { to: '/o-nas', label: 'O nás' },
   { to: '/co-vyrabime', label: 'Co vyrábíme' },
   { to: '/portfolio', label: 'Portfolio' },
@@ -35,8 +34,6 @@ export default function Navbar() {
       >
         <div
           style={{
-            maxWidth: '1280px',
-            margin: '0 auto',
             padding: '0 2rem',
             height: '72px',
             display: 'flex',
@@ -89,15 +86,12 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden"
+              className="flex md:hidden flex-col gap-[5px]"
               style={{
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
                 padding: '4px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '5px',
               }}
               aria-label="Menu"
             >

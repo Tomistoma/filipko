@@ -17,23 +17,8 @@ export default function ProjectCarousel() {
   const offset = index === 0 ? '0px' : `calc(-${index} * (100% + ${GAP}px) / ${VISIBLE})`
 
   return (
-    <section style={{ padding: '6rem 0', backgroundColor: '#fff' }}>
+    <section style={{ padding: '6rem 0', backgroundColor: '#fafaf9' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
-          <div>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '0.75rem' }}>
-              Výběr z projektů
-            </p>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, letterSpacing: '-0.02em', color: '#1c1917', margin: 0 }}>
-              Realizované projekty
-            </h2>
-          </div>
-          <p style={{ fontSize: '0.75rem', color: '#a8a29e' }}>
-            {index + 1}–{Math.min(index + VISIBLE, projects.length)} / {projects.length}
-          </p>
-        </div>
 
         {/* Carousel row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
@@ -47,8 +32,8 @@ export default function ProjectCarousel() {
               flexShrink: 0,
               width: '48px', height: '48px',
               borderRadius: '50%',
-              border: '1px solid #d6d3d1',
-              backgroundColor: '#fff',
+              border: 'none',
+              backgroundColor: '#1c1917',
               cursor: index === 0 ? 'default' : 'pointer',
               opacity: index === 0 ? 0.25 : 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -56,7 +41,7 @@ export default function ProjectCarousel() {
             }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3L5 8L10 13" stroke="#1c1917" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M10 3L5 8L10 13" stroke="#fafaf9" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
@@ -83,39 +68,30 @@ export default function ProjectCarousel() {
                     textDecoration: 'none',
                     // Each card takes exactly 1/VISIBLE of the clipping window
                     flex: `0 0 calc((100% - ${(VISIBLE - 1) * GAP}px) / ${VISIBLE})`,
-                    position: 'relative',
-                    overflow: 'hidden',
-                    backgroundColor: placeholderColors[i % placeholderColors.length],
-                    aspectRatio: '4 / 3',
                   }}
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    style={{
-                      position: 'absolute', inset: 0,
-                      width: '100%', height: '100%',
-                      objectFit: 'cover', display: 'block',
-                      transform: hovered === project.id ? 'scale(1.04)' : 'scale(1)',
-                      transition: 'transform 0.5s ease',
-                    }}
-                  />
                   <div
                     style={{
-                      position: 'absolute', inset: 0,
-                      background: 'linear-gradient(to top, rgba(28,25,23,0.72) 0%, rgba(28,25,23,0.1) 55%, transparent 100%)',
-                      opacity: hovered === project.id ? 1 : 0.8,
-                      transition: 'opacity 0.35s ease',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      backgroundColor: placeholderColors[i % placeholderColors.length],
+                      aspectRatio: '4 / 3',
                     }}
-                  />
-                  <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem' }}>
-                    <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#d6d3d1', marginBottom: '0.3rem' }}>
-                      {project.year}
-                    </p>
-                    <p style={{ fontSize: '0.95rem', fontWeight: 300, color: '#fafaf9', lineHeight: 1.3 }}>
-                      {project.title}
-                    </p>
-                    <p style={{ fontSize: '0.75rem', color: '#a8a29e', marginTop: '0.2rem' }}>
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      style={{
+                        position: 'absolute', inset: 0,
+                        width: '100%', height: '100%',
+                        objectFit: 'cover', display: 'block',
+                        transform: hovered === project.id ? 'scale(1.04)' : 'scale(1)',
+                        transition: 'transform 0.5s ease',
+                      }}
+                    />
+                  </div>
+                  <div style={{ marginTop: '0.9rem' }}>
+                    <p style={{ fontSize: '0.75rem', color: '#a8a29e' }}>
                       {project.location}
                     </p>
                   </div>
@@ -133,8 +109,8 @@ export default function ProjectCarousel() {
               flexShrink: 0,
               width: '48px', height: '48px',
               borderRadius: '50%',
-              border: '1px solid #d6d3d1',
-              backgroundColor: '#fff',
+              border: 'none',
+              backgroundColor: '#1c1917',
               cursor: index === maxIndex ? 'default' : 'pointer',
               opacity: index === maxIndex ? 0.25 : 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -142,7 +118,7 @@ export default function ProjectCarousel() {
             }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3L11 8L6 13" stroke="#1c1917" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M6 3L11 8L6 13" stroke="#fafaf9" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
@@ -162,6 +138,7 @@ export default function ProjectCarousel() {
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               fontWeight: 500,
+              borderRadius: '9999px',
             }}
           >
             Portfolio

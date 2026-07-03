@@ -3,40 +3,6 @@ import { CDN } from '../config'
 export default function ONas() {
   return (
     <div style={{ paddingTop: '72px' }}>
-      {/* Page header */}
-      <section
-        style={{
-          padding: '6rem 2rem 5rem',
-          maxWidth: '1280px',
-          margin: '0 auto',
-          borderBottom: '1px solid #e7e5e4',
-        }}
-      >
-        <p
-          style={{
-            fontSize: '0.65rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#a8a29e',
-            marginBottom: '1.5rem',
-          }}
-        >
-          Náš příběh
-        </p>
-        <h1
-          style={{
-            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-            fontWeight: 200,
-            letterSpacing: '-0.02em',
-            color: '#1c1917',
-            margin: '0',
-            lineHeight: 1.1,
-            maxWidth: '700px',
-          }}
-        >
-          O nás
-        </h1>
-      </section>
 
       {/* 2-column main content */}
       <section
@@ -47,7 +13,7 @@ export default function ONas() {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '6rem',
-          alignItems: 'start',
+          alignItems: 'stretch',
         }}
       >
         {/* Left column — text */}
@@ -87,33 +53,33 @@ export default function ONas() {
           </div>
         </div>
 
-        {/* Right column — portrait + belief section */}
-        <div>
+        {/* Right column — portrait + small centered quote below it */}
+        <div style={{ height: '100%', minHeight: '400px', display: 'flex', flexDirection: 'column' }}>
           <img
-            src={`${CDN}/images/filip.jpg`}
+            src={`${CDN}/images/filipo.jpg`}
             alt="Filip Kopáček"
             style={{
               width: '100%',
-              height: 'auto',
+              flex: 1,
+              minHeight: 0,
+              objectFit: 'cover',
               display: 'block',
             }}
           />
-
-          <div style={{ marginTop: '3rem' }}>
-            <h2
+          <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
+            <p
               style={{
-                fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
-                fontWeight: 300,
-                letterSpacing: '-0.01em',
-                color: '#1c1917',
-                marginBottom: '1.5rem',
-                lineHeight: 1.2,
+                fontSize: '0.65rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: '#a8a29e',
+                marginBottom: '0.5rem',
               }}
             >
               Čemu věřím
-            </h2>
-            <p style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.8 }}>
-              V dnešní době, kdy je trh přesycen rychlými a levnými řešeními, se vracím k základům. Věřím, že nábytek by neměl být jen spotřebním zbožím, ale součást domova, která stárne s vámi. Moje práce není o tom vyrobit co nejvíce kusů za co nejkratší čas. Je o klidu, důkladnosti a jistotě, že nábytek, který jsem namontoval, bude fungovat hladce i za dvacet let. Moje filozofie je zkrátka jednoduchá: nedělám nic, pod co bych se nebyl ochoten podepsat vlastním jménem.
+            </p>
+            <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#78716c', lineHeight: 1.6 }}>
+              „V dnešní době, kdy je trh přesycen rychlými a levnými řešeními, se vracím k základům. Věřím, že nábytek by neměl být jen spotřebním zbožím, ale součást domova, která stárne s vámi. Moje práce není o tom vyrobit co nejvíce kusů za co nejkratší čas. Je o klidu, důkladnosti a jistotě, že nábytek, který jsem namontoval, bude fungovat hladce i za dvacet let. Moje filozofie je zkrátka jednoduchá: nedělám nic, pod co bych se nebyl ochoten podepsat vlastním jménem.“
             </p>
           </div>
         </div>
