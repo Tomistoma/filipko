@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 3000
 
-const CONTACT_TO_EMAIL = 'tomas.libertatem@gmail.com'
+const CONTACT_TO_EMAIL = 'info@truhlarstvimzastestim.cz'
 const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Truhlářstvím za štěstím <onboarding@resend.dev>'
 
 app.use(express.json())
