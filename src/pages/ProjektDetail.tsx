@@ -94,7 +94,8 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '2rem',
+        // Larger bottom padding keeps a strip free for the counter below the photo
+        padding: '2rem 2rem 4rem',
       }}
     >
       <img
@@ -141,8 +142,8 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
   )
 }
 
-function getGallery(projectId: number, filenames: string[]): string[] {
-  return filenames.map((f) => `${CDN}/images/projekty/projekt${projectId}/${f}`)
+function getGallery(slug: string, filenames: string[]): string[] {
+  return filenames.map((f) => `${CDN}/images/projekty-v2/${slug}/${f}`)
 }
 
 export default function ProjektDetail() {
@@ -155,7 +156,7 @@ export default function ProjektDetail() {
   const currentIndex = projects.findIndex((p) => p.id === project.id)
   const prev = projects[currentIndex - 1] ?? null
   const next = projects[currentIndex + 1] ?? null
-  const gallery = getGallery(project.id, project.gallery)
+  const gallery = getGallery(project.slug, project.gallery)
 
   return (
     // Extra bottom space (~2.5 cm) before the footer

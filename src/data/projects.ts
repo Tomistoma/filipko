@@ -1,132 +1,42 @@
 import { CDN } from '../config'
 
+// Photos live in S3 under images/projekty-v2/<slug>/ (01.jpg … plus cover.jpg),
+// compressed from the folders in public/images/Projekty FOTO/ ("DATE - Location - TYPE").
 export interface Project {
   id: number
+  slug: string      // S3 folder name
   title: string
   location: string
-  category: string
   year: string
-  image: string
-  description: string
-  gallery: string[]  // filenames inside public/images/projekty/projekt{id}/
+  image: string     // cover for cards
+  gallery: string[] // filenames inside images/projekty-v2/<slug>/
 }
 
+function project(id: number, slug: string, title: string, location: string, year: string, photoCount: number): Project {
+  return {
+    id,
+    slug,
+    title,
+    location,
+    year,
+    image: `${CDN}/images/projekty-v2/${slug}/cover.jpg`,
+    gallery: Array.from({ length: photoCount }, (_, i) => `${String(i + 1).padStart(2, '0')}.jpg`),
+  }
+}
+
+// Newest first
 export const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Administrativní prostory',
-    location: 'Praha — Holešovice',
-    category: 'Kuchyně',
-    year: '2025',
-    image: `${CDN}/images/projekt-1.jpg`,
-    description: 'Kuchyně z masivního dubu s ostrůvkem a vestavěnými spotřebiči.',
-    gallery: [
-      'IMG_0873.jpg',
-      'IMG_0907.jpg',
-      'IMG_0908.jpg',
-      'IMG_0913.jpg',
-      'IMG_0921.jpg',
-      'IMG_0942.jpg',
-      'IMG_0946.jpg',
-      'IMG_0948.jpg',
-      'IMG_0953.jpg',
-      'Untitled_Panorama1.jpg',
-      'Untitled_Panorama2.jpg',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Byt na míru',
-    location: 'Praha - Braník',
-    category: 'Nábytek',
-    year: '2025',
-    image: `${CDN}/images/projekt-2.jpg`,
-    description: 'Vestavěné skříně do celé délky ložnice z bílé MDF s dubovými úchytkami.',
-    gallery: [
-      'IMG_4398.jpg',
-      'IMG_4402.jpg',
-      'IMG_4406.jpg',
-      'IMG_4408.jpg',
-      'IMG_4417.jpg',
-      'IMG_4420.jpg',
-      'IMG_4430.jpg',
-      'IMG_4454-2.jpg',
-      'IMG_4462-Pano.jpg',
-      'IMG_4470.jpg',
-      'IMG_4475.jpg',
-      'IMG_4489.jpg',
-      'IMG_4491.jpg',
-      'IMG_4492.jpg',
-      'IMG_4497.jpg',
-      'IMG_4501.jpg',
-      'IMG_4508.jpg',
-      'IMG_4517-2.jpg',
-    ],
-  },
-  {
-    id: 3,
-    title: 'Kuchyně s jídelnou',
-    location: 'Praha — Bašť',
-    category: 'Kuchyně',
-    year: '2024',
-    image: `${CDN}/images/projekt-3.jpg`,
-    description: 'Propojená kuchyně s jídelní částí. Kuchyňský blok z ořechové dýhy.',
-    gallery: [
-      'IMG_4582.jpg',
-      'IMG_4593.jpg',
-      'IMG_4595.jpg',
-      'IMG_4598.jpg',
-      'IMG_4610.jpg',
-      'IMG_4612.jpg',
-      'IMG_4616.jpg',
-      'IMG_4624.jpg',
-      'IMG_4629.jpg',
-      'IMG_4640.jpg',
-      'IMG_4644.jpg',
-      'IMG_4692.jpg',
-    ],
-  },
-  {
-    id: 4,
-    title: 'Kuchyně',
-    location: 'Praha — Košíře',
-    category: 'Nábytek',
-    year: '2024',
-    image: `${CDN}/images/projekt-4.jpg`,
-    description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
-    gallery: [
-      'IMG_4582.jpg',
-      'IMG_4593.jpg',
-      'IMG_4595.jpg',
-      'IMG_4598.jpg',
-      'IMG_4610.jpg',
-      'IMG_4612.jpg',
-      'IMG_4616.jpg',
-      'IMG_4624.jpg',
-      'IMG_4629.jpg',
-      'IMG_4640.jpg',
-      'IMG_4644.jpg',
-      'IMG_4692.jpg',
-    ],
-  },
-  {
-    id: 5,
-    title: 'Dům',
-    location: 'Mírovice',
-    category: 'Nábytek',
-    year: '2024',
-    image: `${CDN}/images/projekt-4.jpg`,
-    description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
-    gallery: [],
-  },
-  {
-    id: 6,
-    title: 'Byt',
-    location: 'Praha — Chodov',
-    category: 'Nábytek',
-    year: '2024',
-    image: `${CDN}/images/projekt-4.jpg`,
-    description: 'Obývací stěna s otevřenými policemi, skříňkami a místem pro televizi.',
-    gallery: [],
-  },
+  project(1, '2026-07-13-praha-cimice-byt', 'Byt', 'Praha — Čimice', '2026', 28),
+  project(2, '2026-06-16-usti-byt', 'Byt', 'Ústí', '2026', 22),
+  project(3, '2026-01-15-usti-skrine', 'Skříně', 'Ústí', '2026', 7),
+  project(4, '2025-11-08-krasny-les-kuchyne', 'Kuchyně', 'Krásný Les', '2025', 7),
+  project(5, '2025-09-30-bast-kuchyne', 'Kuchyně', 'Bašť', '2025', 12),
+  project(6, '2025-07-30-praha-holesovice-obyvaci-sestavy', 'Obývací sestavy', 'Praha — Holešovice', '2025', 12),
+  project(7, '2025-07-25-praha-kosire-kuchyne', 'Kuchyně', 'Praha — Košíře', '2025', 8),
+  project(8, '2025-05-23-praha-branik-byt', 'Byt', 'Praha — Braník', '2025', 18),
+  project(9, '2024-09-18-praha-vysocany-tv-stena', 'TV stěna', 'Praha — Vysočany', '2024', 4),
+  project(10, '2024-08-13-praha-holesovice-administrativni-prostory', 'Administrativní prostory', 'Praha — Holešovice', '2024', 11),
+  project(11, '2023-05-23-praha-holesovice-optika-stul', 'Optika — Stůl', 'Praha — Holešovice', '2023', 6),
+  project(12, '2022-06-25-mirovice-dum', 'Dům', 'Mírovice', '2022', 12),
+  project(13, '2021-11-21-praha-chodov-byt', 'Byt', 'Praha — Chodov', '2021', 8),
 ]

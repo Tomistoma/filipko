@@ -1,13 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { CDN } from '../config'
 
-const slides = [
-  { src: `${CDN}/images/foto-1.jpg` },
-  { src: `${CDN}/images/foto-2.jpg` },
-  { src: `${CDN}/images/foto-3.jpg` },
-  { src: `${CDN}/images/foto-4.jpg` },
-  { src: `${CDN}/images/foto-5.jpg` },
-]
+// Photos live in S3 under images/carousel/ (originals: public/images/carousel/)
+const slides = [1, 2, 3, 4, 5, 6, 7].map((n) => ({ src: `${CDN}/images/carousel/${n}.jpg` }))
 
 const INTERVAL = 8000
 const FADE_DURATION = 2000

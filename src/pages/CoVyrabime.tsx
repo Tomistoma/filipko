@@ -2,15 +2,18 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CDN } from '../config'
 
+// Photos live in S3 under images/vyrobky/new/ (originals: public/images/vyrobky/new/)
 const items = [
-  { id: 'kuchyne',            label: 'Kuchyně',             color: '#ccc0b0', img: `${CDN}/images/vyrobky/kuchyne.jpg` },
-  { id: 'skrine',             label: 'Skříně',              color: '#c2b8a8', img: `${CDN}/images/vyrobky/skrine.jpg` },
-  { id: 'jidelni-stoly',      label: 'Jídelní stoly',       color: '#d4c8b8', img: `${CDN}/images/vyrobky/jidelni-stoly.jpg` },
-  { id: 'televizni-skrinky',  label: 'Skříně',              color: '#bdb4a8', img: `${CDN}/images/vyrobky/skrinky.jpg` },
-  { id: 'komody',             label: 'Komody',              color: '#c8bfb2', img: `${CDN}/images/vyrobky/komody.jpg` },
-  { id: 'postele',            label: 'Postele',             color: '#b8b2a8', img: `${CDN}/images/vyrobky/postele.jpg` },
-  { id: 'koupelny',           label: 'Koupelny',            color: '#d0c8bc', img: `${CDN}/images/vyrobky/koupelny.jpg` },
-  { id: 'knihovny',           label: 'Knihovny',            color: '#c4bab0', img: `${CDN}/images/vyrobky/knihovny.jpg` },
+  { id: 'kuchyne',           label: 'Kuchyně',           color: '#ccc0b0', img: `${CDN}/images/vyrobky/new/kuchyne.jpg` },
+  { id: 'skrine',            label: 'Skříně',            color: '#c2b8a8', img: `${CDN}/images/vyrobky/new/skrine.jpg` },
+  { id: 'posuvne-skrine',    label: 'Posuvné skříně',    color: '#d4c8b8', img: `${CDN}/images/vyrobky/new/posuvne-skrine.jpg` },
+  { id: 'obyvaci-steny',     label: 'Obývací stěny',     color: '#bdb4a8', img: `${CDN}/images/vyrobky/new/obyvaci-steny.jpg` },
+  { id: 'televizni-steny',   label: 'Televizní stěny',   color: '#c8bfb2', img: `${CDN}/images/vyrobky/new/televizni-steny.jpg` },
+  { id: 'knihovny',          label: 'Knihovny',          color: '#c4bab0', img: `${CDN}/images/vyrobky/new/knihovny.jpg` },
+  { id: 'jidelni-stoly',     label: 'Jídelní stoly',     color: '#d0c8bc', img: `${CDN}/images/vyrobky/new/jidelni-stoly.jpg` },
+  { id: 'postele',           label: 'Postele',           color: '#b8b2a8', img: `${CDN}/images/vyrobky/new/postele.jpg` },
+  { id: 'sedaky',            label: 'Sedáky',            color: '#ccc0b0', img: `${CDN}/images/vyrobky/new/sedaky.jpg` },
+  { id: 'pracovni-prostory', label: 'Pracovní prostory', color: '#c2b8a8', img: `${CDN}/images/vyrobky/new/pracovni-prostory.jpg` },
 ]
 
 export default function CoVyrabime() {
