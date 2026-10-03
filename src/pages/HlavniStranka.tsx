@@ -16,7 +16,20 @@ export default function HlavniStranka() {
       <ProjectCarousel />
 
       {/* ── Split: text + portrait ── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '60vh' }}>
+      {/* Same outer width as ProjectCarousel, inset by its arrow slots (48px + 1.25rem gap)
+          so the text and photo line up with the edges of the project cards */}
+      <section
+        style={{
+          maxWidth: '1520px',
+          margin: '0 auto',
+          padding: '0 calc(2rem + 48px + 1.25rem)',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '4rem',
+          minHeight: '60vh',
+          backgroundColor: '#fafaf9',
+        }}
+      >
         {/* Left — text, top-aligned with the photo */}
         <div
           style={{
@@ -24,8 +37,7 @@ export default function HlavniStranka() {
             flexDirection: 'column',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            padding: '4rem 2rem 4rem 5rem',
-            backgroundColor: '#fafaf9',
+            padding: '4rem 0',
             gap: '2.5rem',
           }}
         >
@@ -52,14 +64,13 @@ export default function HlavniStranka() {
           </Link>
         </div>
 
-        {/* Right — portrait photo */}
+        {/* Right — portrait photo, flush with the right edge of the last card */}
         <div
           style={{
             display: 'flex',
             alignItems: 'flex-start',
-            justifyContent: 'center',
-            padding: '4rem 3rem',
-            backgroundColor: '#fafaf9',
+            justifyContent: 'flex-end',
+            padding: '4rem 0',
           }}
         >
           <img
