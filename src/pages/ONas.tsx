@@ -2,7 +2,8 @@ import { CDN } from '../config'
 
 export default function ONas() {
   return (
-    <div style={{ paddingTop: '72px' }}>
+    // Extra bottom space (~2 cm) before the footer
+    <div style={{ paddingBottom: '5rem' }}>
 
       {/* 2-column main content */}
       <section

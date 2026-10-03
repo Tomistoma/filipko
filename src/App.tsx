@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
-import LocationMap from './components/LocationMap'
 import HlavniStranka from './pages/HlavniStranka'
 import ONas from './pages/ONas'
 import CoVyrabime from './pages/CoVyrabime'
@@ -28,7 +27,6 @@ function Layout() {
         </Routes>
       </main>
       <Footer />
-      {(pathname === '/' || pathname === '/kontakt') && <LocationMap />}
     </>
   )
 }

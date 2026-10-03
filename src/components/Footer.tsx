@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom'
-import { CDN } from '../config'
+import { Link, useLocation } from 'react-router-dom'
+import LocationMap from './LocationMap'
 
-const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/truhlarstvim_za_stestim/', logo: `${CDN}/images/logo.jpg` },
-]
+const INSTAGRAM_URL = 'https://www.instagram.com/truhlarstvim_za_stestim/'
 
 const services = [
   'Kuchyně a jídelny na míru',
@@ -14,6 +12,8 @@ const services = [
 ]
 
 export default function Footer() {
+  const { pathname } = useLocation()
+
   return (
     <footer style={{ backgroundColor: '#fafaf9', marginTop: 0 }}>
 
@@ -22,7 +22,7 @@ export default function Footer() {
 
         {/* O nás */}
         <div>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 500, color: '#a8a29e', marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, color: '#1c1917', marginBottom: '1.25rem' }}>
             O nás
           </p>
           <p style={{ fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600, color: '#1c1917', marginBottom: '0.4rem' }}>
@@ -35,7 +35,7 @@ export default function Footer() {
 
         {/* Kontakt */}
         <div>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 500, color: '#a8a29e', marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, color: '#1c1917', marginBottom: '1.25rem' }}>
             Kontakt
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '2rem' }}>
@@ -57,31 +57,24 @@ export default function Footer() {
             </div>
           </div>
 
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '0.75rem' }}>
-            Sociální sítě
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem 1.25rem' }}>
-            {socialLinks.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-              >
-                <img
-                  src={s.logo}
-                  alt={s.label}
-                  style={{ height: '200px', width: '200px', display: 'block', borderRadius: '50%', objectFit: 'cover', marginTop: '30px' }}
-                />
-              </a>
-            ))}
-          </div>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            style={{ display: 'inline-block', color: '#57534e' }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
         </div>
 
         {/* Služby */}
         <div>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 500, color: '#a8a29e', marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, color: '#1c1917', marginBottom: '1.25rem' }}>
             Služby
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
@@ -98,6 +91,8 @@ export default function Footer() {
         </div>
 
       </div>
+
+      {(pathname === '/' || pathname === '/kontakt') && <LocationMap />}
 
       {/* ── Copyright bar ── */}
       <div

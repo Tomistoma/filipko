@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 
-const GAP = 20    // px between cards
+const GAP = 36    // px between cards
 const VISIBLE = 3
 const ANIM_MS = 900
 
@@ -18,7 +18,7 @@ export default function ProjectCarousel() {
 
   return (
     <section style={{ padding: '6rem 0', backgroundColor: '#fafaf9' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1520px', margin: '0 auto', padding: '0 2rem' }}>
 
         {/* Carousel row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
@@ -34,10 +34,12 @@ export default function ProjectCarousel() {
               borderRadius: '50%',
               border: 'none',
               backgroundColor: '#1c1917',
-              cursor: index === 0 ? 'default' : 'pointer',
-              opacity: index === 0 ? 0.25 : 1,
+              cursor: 'pointer',
+              // Hidden when unusable, but keeps its slot so the cards don't shift
+              opacity: index === 0 ? 0 : 1,
+              visibility: index === 0 ? 'hidden' : 'visible',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'opacity 0.2s',
+              transition: 'opacity 0.2s, visibility 0.2s',
             }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -111,10 +113,12 @@ export default function ProjectCarousel() {
               borderRadius: '50%',
               border: 'none',
               backgroundColor: '#1c1917',
-              cursor: index === maxIndex ? 'default' : 'pointer',
-              opacity: index === maxIndex ? 0.25 : 1,
+              cursor: 'pointer',
+              // Hidden when unusable, but keeps its slot so the cards don't shift
+              opacity: index === maxIndex ? 0 : 1,
+              visibility: index === maxIndex ? 'hidden' : 'visible',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'opacity 0.2s',
+              transition: 'opacity 0.2s, visibility 0.2s',
             }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

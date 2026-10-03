@@ -57,7 +57,7 @@ export default function Kontakt() {
   }
 
   return (
-    <div style={{ paddingTop: '72px' }}>
+    <div>
       <section
         style={{
           padding: '8rem 2rem',
@@ -69,8 +69,18 @@ export default function Kontakt() {
           alignItems: 'center',
         }}
       >
-        {/* Left — simple statement */}
-        <div>
+        {/* Left — statement, vertically centred in the visible screen on load.
+            The box starts 8rem below the navbar (73px); shrinking it by another 8rem
+            puts its middle exactly halfway between the navbar and the bottom of the screen. */}
+        <div
+          style={{
+            alignSelf: 'start',
+            height: 'calc(100vh - 73px - 16rem)',
+            minHeight: 'min-content',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <h1
             style={{
               fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',

@@ -68,7 +68,7 @@ export default function PhotoCarousel() {
       style={{
         position: 'relative',
         width: '100%',
-        height: 'calc(100vh - 72px)',
+        height: 'calc(100vh - 73px)',
         overflow: 'hidden',
         // Neutral background — if a gap ever appeared it won't flash black
         backgroundColor: '#c7c0b8',

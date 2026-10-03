@@ -8,7 +8,7 @@ export default function Portfolio() {
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <div style={{ paddingTop: '72px' }}>
+    <div>
       {/* Grid */}
       <section style={{ padding: '6rem 2rem 8rem', maxWidth: '1280px', margin: '0 auto' }}>
         <div

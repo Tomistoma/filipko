@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 const links = [
@@ -10,26 +10,16 @@ const links = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   return (
     <>
       <header
         style={{
-          position: 'fixed',
+          position: 'sticky',
           top: 0,
-          left: 0,
-          right: 0,
           zIndex: 100,
-          backgroundColor: scrolled ? 'rgba(250,250,249,0.97)' : 'transparent',
-          borderBottom: scrolled ? '1px solid #e7e5e4' : '1px solid transparent',
-          transition: 'background-color 0.3s ease, border-color 0.3s ease',
+          backgroundColor: '#fafaf9',
+          borderBottom: '1px solid #e7e5e4',
         }}
       >
         <div

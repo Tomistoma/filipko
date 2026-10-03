@@ -6,7 +6,7 @@ const items = [
   { id: 'kuchyne',            label: 'Kuchyně',             color: '#ccc0b0', img: `${CDN}/images/vyrobky/kuchyne.jpg` },
   { id: 'skrine',             label: 'Skříně',              color: '#c2b8a8', img: `${CDN}/images/vyrobky/skrine.jpg` },
   { id: 'jidelni-stoly',      label: 'Jídelní stoly',       color: '#d4c8b8', img: `${CDN}/images/vyrobky/jidelni-stoly.jpg` },
-  { id: 'televizni-skrinky',  label: 'Skříňky',             color: '#bdb4a8', img: `${CDN}/images/vyrobky/skrinky.jpg` },
+  { id: 'televizni-skrinky',  label: 'Skříně',              color: '#bdb4a8', img: `${CDN}/images/vyrobky/skrinky.jpg` },
   { id: 'komody',             label: 'Komody',              color: '#c8bfb2', img: `${CDN}/images/vyrobky/komody.jpg` },
   { id: 'postele',            label: 'Postele',             color: '#b8b2a8', img: `${CDN}/images/vyrobky/postele.jpg` },
   { id: 'koupelny',           label: 'Koupelny',            color: '#d0c8bc', img: `${CDN}/images/vyrobky/koupelny.jpg` },
@@ -17,7 +17,7 @@ export default function CoVyrabime() {
   const [hovered, setHovered] = useState<string | null>(null)
 
   return (
-    <div style={{ paddingTop: '72px' }}>
+    <div>
 
       {/* 2-column grid, inset from the viewport edges */}
       <div
@@ -90,7 +90,7 @@ export default function CoVyrabime() {
           to="/kontakt"
           style={{
             display: 'inline-block',
-            padding: '1rem 3rem',
+            padding: '1rem 4.5rem',
             backgroundColor: '#1c1917',
             color: '#fafaf9',
             textDecoration: 'none',
@@ -98,6 +98,7 @@ export default function CoVyrabime() {
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             fontWeight: 500,
+            borderRadius: '9999px',
           }}
         >
           Kontaktujte nás
