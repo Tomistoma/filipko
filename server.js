@@ -1,6 +1,7 @@
 import express from 'express'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { timingSafeEqual } from 'crypto'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -100,6 +101,101 @@ app.post('/api/contact', async (req, res) => {
   } catch (err) {
     console.error('Failed to send contact email:', err)
     res.status(502).json({ error: 'Zprávu se nepodařilo odeslat. Zkuste to prosím znovu.' })
+  }
+})
+
+// ── Visit statistics for the /admin dashboard ──
+// Visits are counted by GoatCounter; this reads them back through its API so the
+// API token stays on the server and the dashboard sits behind our own password.
+
+// Same code as GOATCOUNTER_CODE in src/config.ts
+const GOATCOUNTER_API = 'https://truhlarstvi.goatcounter.com/api/v0'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
+const STATS_DAYS = 30
+const STATS_CACHE_MS = 60 * 1000
+
+let statsCache = null
+
+function isAdmin(req) {
+  const given = Buffer.from(String(req.get('authorization') || '').replace(/^Bearer /, ''))
+  const expected = Buffer.from(ADMIN_PASSWORD)
+  return given.length === expected.length && timingSafeEqual(given, expected)
+}
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+// GoatCounter allows only 4 requests per second, so calls are spaced out and retried when refused
+async function goatcounter(path, params) {
+  for (let attempt = 0; ; attempt++) {
+    await sleep(300)
+    const res = await fetch(`${GOATCOUNTER_API}${path}?${new URLSearchParams(params)}`, {
+      headers: { 'Authorization': `Bearer ${process.env.GOATCOUNTER_API_TOKEN}`, 'Content-Type': 'application/json' },
+    })
+    if (res.ok) return res.json()
+    if (res.status !== 429 || attempt === 3) throw new Error(`GoatCounter ${path} responded ${res.status}: ${await res.text()}`)
+    await sleep(1000)
+  }
+}
+
+// Calendar day in Czech time, as YYYY-MM-DD — the GoatCounter site is set to Europe/Prague
+function pragueDay(date) {
+  return date.toLocaleDateString('sv-SE', { timeZone: 'Europe/Prague' })
+}
+
+async function loadStats() {
+  const now = new Date()
+  const start = new Date(now.getTime() - (STATS_DAYS - 1) * 24 * 60 * 60 * 1000)
+  const range = { start: `${pragueDay(start)}T00:00:00Z`, end: now.toISOString() }
+
+  const month = await goatcounter('/stats/total', range)
+  // Counting started in October 2026
+  const allTime = await goatcounter('/stats/total', { start: '2026-10-01T00:00:00Z', end: range.end })
+  const pages = await goatcounter('/stats/hits', { ...range, limit: 10 })
+  const referrers = await goatcounter('/stats/toprefs', { ...range, limit: 10 })
+  const devices = await goatcounter('/stats/sizes', range)
+
+  // Days without any visit are missing from the response — fill them in with zero
+  const byDay = new Map()
+  for (const s of month.stats || []) {
+    byDay.set(String(s.day).slice(0, 10), s.daily ?? (s.hourly || []).reduce((sum, n) => sum + n, 0))
+  }
+  const daily = []
+  for (let i = STATS_DAYS - 1; i >= 0; i--) {
+    const day = pragueDay(new Date(now.getTime() - i * 24 * 60 * 60 * 1000))
+    daily.push({ day, visits: byDay.get(day) || 0 })
+  }
+  const sum = (days) => daily.slice(-days).reduce((total, d) => total + d.visits, 0)
+
+  return {
+    today: sum(1),
+    week: sum(7),
+    month: sum(STATS_DAYS),
+    total: allTime.total || 0,
+    daily,
+    pages: (pages.hits || []).filter((h) => !h.event).map((h) => ({ name: h.path, visits: h.count })),
+    referrers: (referrers.stats || []).map((r) => ({ name: r.name || '', visits: r.count })),
+    devices: (devices.stats || []).filter((d) => d.count > 0).map((d) => ({ name: d.id, visits: d.count })),
+  }
+}
+
+app.get('/api/admin/stats', async (req, res) => {
+  if (!ADMIN_PASSWORD || !process.env.GOATCOUNTER_API_TOKEN) {
+    return res.status(503).json({ error: 'Administrace není nastavena (chybí ADMIN_PASSWORD nebo GOATCOUNTER_API_TOKEN).' })
+  }
+  if (!isAdmin(req)) {
+    // Slows down password guessing
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    return res.status(401).json({ error: 'Nesprávné heslo.' })
+  }
+
+  try {
+    if (!statsCache || Date.now() - statsCache.at > STATS_CACHE_MS) {
+      statsCache = { at: Date.now(), data: await loadStats() }
+    }
+    res.json(statsCache.data)
+  } catch (err) {
+    console.error('Failed to load stats:', err)
+    res.status(502).json({ error: 'Statistiky se nepodařilo načíst.' })
   }
 })
 
