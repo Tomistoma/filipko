@@ -23,7 +23,7 @@ export default function InstagramFeed() {
   }, [])
 
   return (
-    <section style={{ padding: '6rem 2rem', backgroundColor: '#fafaf9' }}>
+    <section className="m-section-x" style={{ padding: '6rem 2rem', backgroundColor: '#fafaf9' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         <behold-widget feed-id={FEED_ID} />

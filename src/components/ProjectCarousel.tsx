@@ -17,8 +17,8 @@ export default function ProjectCarousel() {
   const offset = index === 0 ? '0px' : `calc(-${index} * (100% + ${GAP}px) / ${VISIBLE})`
 
   return (
-    <section style={{ padding: '6rem 0', backgroundColor: '#fafaf9' }}>
-      <div style={{ maxWidth: '1520px', margin: '0 auto', padding: '0 2rem' }}>
+    <section className="m-section" style={{ padding: '6rem 0', backgroundColor: '#fafaf9' }}>
+      <div className="m-gutter" style={{ maxWidth: '1520px', margin: '0 auto', padding: '0 2rem' }}>
 
         {/* Carousel row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
@@ -28,6 +28,7 @@ export default function ProjectCarousel() {
             onClick={() => setIndex(i => Math.max(0, i - 1))}
             disabled={index === 0}
             aria-label="Předchozí projekty"
+            className="m-hide"
             style={{
               flexShrink: 0,
               width: '48px', height: '48px',
@@ -48,10 +49,11 @@ export default function ProjectCarousel() {
           </button>
 
           {/* Clipping window — overflow:hidden clips cards outside view */}
-          <div style={{ flex: 1, overflow: 'hidden' }}>
+          <div className="m-scroller" style={{ flex: 1, overflow: 'hidden' }}>
 
             {/* Sliding track — width:100% makes translateX(%) resolve against clipping window */}
             <div
+              className="m-track"
               style={{
                 display: 'flex',
                 width: '100%',
@@ -64,6 +66,7 @@ export default function ProjectCarousel() {
                 <Link
                   key={project.id}
                   to={`/projekty/${project.id}`}
+                  className="m-card"
                   onMouseEnter={() => setHovered(project.id)}
                   onMouseLeave={() => setHovered(null)}
                   style={{
@@ -107,6 +110,7 @@ export default function ProjectCarousel() {
             onClick={() => setIndex(i => Math.min(maxIndex, i + 1))}
             disabled={index === maxIndex}
             aria-label="Další projekty"
+            className="m-hide"
             style={{
               flexShrink: 0,
               width: '48px', height: '48px',

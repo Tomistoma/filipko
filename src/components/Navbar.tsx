@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 const links = [
@@ -10,6 +10,14 @@ const links = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  // Stop the page behind from scrolling while the mobile menu is open
+  useEffect(() => {
+    if (!menuOpen) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prevOverflow }
+  }, [menuOpen])
 
   return (
     <>
@@ -23,6 +31,7 @@ export default function Navbar() {
         }}
       >
         <div
+          className="m-nav-bar"
           style={{
             padding: '0 2rem',
             height: '72px',
@@ -34,6 +43,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
+            onClick={() => { setMenuOpen(false); window.scrollTo(0, 0) }}
             style={{
               textDecoration: 'none',
               color: '#1c1917',
@@ -45,7 +55,7 @@ export default function Navbar() {
           >
             <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
               <span style={{ fontSize: '0.6rem', fontWeight: 400, letterSpacing: '0.08em', color: '#78716c', textTransform: 'none' }}>Filip Kopáček</span>
-              <span>Truhlářstvím za štěstím</span>
+              <span className="m-logo">Truhlářstvím za štěstím</span>
             </span>
           </Link>
 
@@ -64,6 +74,7 @@ export default function Navbar() {
                   fontWeight: 500,
                   color: isActive ? '#1c1917' : '#78716c',
                   borderBottom: isActive ? '1px solid #1c1917' : '1px solid transparent',
+                  paddingTop: '3px',
                   paddingBottom: '2px',
                   transition: 'color 0.2s',
                 })}

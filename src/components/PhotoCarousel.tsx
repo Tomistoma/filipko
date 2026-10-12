@@ -60,6 +60,7 @@ export default function PhotoCarousel() {
 
   return (
     <div
+      className="m-hero"
       style={{
         position: 'relative',
         width: '100%',

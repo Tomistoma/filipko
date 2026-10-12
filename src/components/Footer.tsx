@@ -18,7 +18,7 @@ export default function Footer() {
     <footer style={{ backgroundColor: '#fafaf9', marginTop: 0 }}>
 
       {/* ── Three columns ── */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '5rem 2rem 4rem', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem' }}>
+      <div className="m-stack m-footer" style={{ maxWidth: '1280px', margin: '0 auto', padding: '5rem 2rem 4rem', display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '4rem' }}>
 
         {/* O nás */}
         <div>
@@ -28,7 +28,7 @@ export default function Footer() {
           <p style={{ fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600, color: '#1c1917', marginBottom: '0.4rem' }}>
             Truhlářstvím za štěstím
           </p>
-          <p style={{ fontSize: '0.875rem', color: '#57534e', lineHeight: 1.75, maxWidth: '280px' }}>
+          <p className="m-nomax" style={{ fontSize: '0.875rem', color: '#57534e', lineHeight: 1.75, maxWidth: '280px' }}>
             Truhlářská dílna se sídlem v Praze která se zaměřuje na zakázkovou výrobu nábytku na míru nejen v Praze, ale i v širokém okolí.
           </p>
         </div>
@@ -62,7 +62,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            style={{ display: 'inline-block', color: '#57534e' }}
+            className="m-ig"
+            style={{ display: 'block', width: 'fit-content', margin: '0 auto', color: '#57534e' }}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -73,7 +74,7 @@ export default function Footer() {
         </div>
 
         {/* Služby */}
-        <div>
+        <div className="m-start" style={{ justifySelf: 'end' }}>
           <p style={{ fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, color: '#1c1917', marginBottom: '1.25rem' }}>
             Služby
           </p>
@@ -96,6 +97,7 @@ export default function Footer() {
 
       {/* ── Copyright bar ── */}
       <div
+        className="m-copy"
         style={{
           borderTop: '1px solid #e7e5e4',
           padding: '1.5rem 2rem',

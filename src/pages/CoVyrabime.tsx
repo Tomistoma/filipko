@@ -24,10 +24,11 @@ export default function CoVyrabime() {
 
       {/* 2-column grid, inset from the viewport edges */}
       <div
+        className="m-stack m-page-top"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
-          padding: '0 2rem',
+          padding: '6rem 2rem 0',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '3rem 2rem',
@@ -82,7 +83,7 @@ export default function CoVyrabime() {
       </div>
 
       {/* CTA */}
-      <section style={{ padding: '7rem 2rem', textAlign: 'center' }}>
+      <section className="m-cta-sm" style={{ padding: '7rem 2rem', textAlign: 'center' }}>
         <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '1.5rem' }}>
           Máte zájem?
         </p>

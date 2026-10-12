@@ -59,6 +59,7 @@ export default function Kontakt() {
   return (
     <div>
       <section
+        className="m-stack m-page"
         style={{
           padding: '8rem 2rem',
           maxWidth: '1280px',
@@ -73,6 +74,7 @@ export default function Kontakt() {
             The box starts 8rem below the navbar (73px); shrinking it by another 8rem
             puts its middle exactly halfway between the navbar and the bottom of the screen. */}
         <div
+          className="m-auto-h"
           style={{
             alignSelf: 'start',
             height: 'calc(100vh - 73px - 16rem)',
@@ -99,6 +101,7 @@ export default function Kontakt() {
         <div>
           {sent ? (
             <div
+              className="m-sent"
               style={{
                 padding: '4rem',
                 border: '1px solid #e7e5e4',

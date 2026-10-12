@@ -19,6 +19,7 @@ export default function HlavniStranka() {
       {/* Same outer width as ProjectCarousel, inset by its arrow slots (48px + 1.25rem gap)
           so the text and photo line up with the edges of the project cards */}
       <section
+        className="m-stack m-split"
         style={{
           maxWidth: '1520px',
           margin: '0 auto',
@@ -32,6 +33,7 @@ export default function HlavniStranka() {
       >
         {/* Left — text, top-aligned with the photo */}
         <div
+          className="m-nopad"
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -42,7 +44,7 @@ export default function HlavniStranka() {
           }}
         >
           {/* Negative margin cancels the line-height's extra space above the first line */}
-          <p style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.9, textAlign: 'justify', marginTop: '-0.45em' }}>
+          <p className="m-left" style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.9, textAlign: 'justify', marginTop: '-0.45em' }}>
             Jmenuji se Filip Kopáček a Truhlářstvím za štěstím jsem v myšlenkách začal tvořit už v roce 2021. V té době jsem měl za sebou dva roky v truhlářské dílně, kde jsem se řemeslu začal učit od píky. Ale pojďme úplně na začátek.
           </p>
           <Link
@@ -66,6 +68,7 @@ export default function HlavniStranka() {
 
         {/* Right — portrait photo, flush with the right edge of the last card */}
         <div
+          className="m-nopad"
           style={{
             display: 'flex',
             alignItems: 'flex-start',
@@ -76,6 +79,7 @@ export default function HlavniStranka() {
           <img
             src={`${CDN}/images/poetrait.jpg`}
             alt="Filip Kopáček"
+            className="m-fullw"
             style={{
               maxHeight: '520px',
               width: 'auto',
@@ -92,6 +96,7 @@ export default function HlavniStranka() {
 
       {/* ── Bottom CTA ── */}
       <section
+        className="m-cta"
         style={{
           position: 'relative',
           backgroundColor: '#fafaf9',
@@ -102,7 +107,7 @@ export default function HlavniStranka() {
       >
         {/* Shrink-wraps to the heading's width; the button stretches to match */}
         <div style={{ position: 'relative', display: 'inline-flex', flexDirection: 'column', maxWidth: '100%' }}>
-          <h2 style={{
+          <h2 className="m-cta-h" style={{
             fontSize: 'clamp(1.75rem, 5vw, 5rem)',
             fontWeight: 200,
             letterSpacing: '-0.03em',
@@ -115,6 +120,7 @@ export default function HlavniStranka() {
           </h2>
           <Link
             to="/kontakt"
+            className="m-cta-btn"
             style={{
               display: 'block',
               // width 0 + minWidth 100%: the button never widens the box, only fills it

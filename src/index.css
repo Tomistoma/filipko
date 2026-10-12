@@ -55,3 +55,85 @@
     box-sizing: border-box;
   }
 }
+
+/* ── Phones (same 767px breakpoint as the navbar's hamburger) ──
+   Layout is set with inline styles, so these overrides need !important. */
+@media (max-width: 767px) {
+  .m-hide { display: none !important; }
+
+  /* Multi-column grids collapse to a single column */
+  .m-stack { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .m-gap-sm { gap: 1.25rem !important; }
+
+  /* Page gutters and top offset */
+  .m-page { padding: 3rem 1.25rem 4rem !important; }
+  .m-page-top { padding: 3rem 1.25rem 0 !important; }
+  .m-section { padding: 3.5rem 0 !important; }
+  .m-section-x { padding: 3.5rem 1.25rem !important; }
+  .m-gutter { padding: 0 1.25rem !important; }
+  .m-nopad { padding: 0 !important; }
+  .m-pb { padding-bottom: 0 !important; }
+  .m-pb-sm { padding-bottom: 2rem !important; }
+  .m-left { text-align: left !important; }
+  .m-nomax { max-width: none !important; }
+  .m-start { justify-self: start !important; }
+  .m-auto-h { height: auto !important; }
+  .m-fullw { width: 100% !important; max-height: none !important; height: auto !important; }
+
+  /* iOS zooms the page when a focused field is smaller than 16px */
+  input, textarea { font-size: 16px !important; }
+
+  /* Navbar */
+  .m-nav-bar { padding: 0 1.25rem !important; }
+  .m-logo { font-size: 0.75rem; letter-spacing: 0.1em; }
+
+  /* Homepage */
+  .m-hero { height: 70vh !important; height: 70svh !important; }
+  .m-split { padding: 0 1.25rem !important; min-height: 0 !important; }
+  .m-cta { padding: 5rem 1.25rem !important; }
+  .m-cta-h { font-size: 7.5vw !important; margin-bottom: 2rem !important; }
+  .m-cta-btn { font-size: 0.68rem !important; letter-spacing: 0.08em !important; padding: 1.1rem 0.5rem !important; }
+  .m-cta-sm { padding: 4.5rem 1.25rem !important; }
+
+  /* Project carousel becomes a swipeable row with the next card peeking in */
+  .m-scroller {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 1.25rem;
+    margin: 0 -1.25rem;
+    padding: 0 1.25rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .m-scroller::-webkit-scrollbar { display: none; }
+  .m-track { width: max-content !important; transform: none !important; gap: 14px !important; }
+  .m-card { flex: 0 0 78vw !important; scroll-snap-align: start; }
+
+  /* O nás — photo keeps its natural proportions instead of filling the column */
+  .m-onas-side { display: block !important; height: auto !important; min-height: 0 !important; }
+  .m-onas-img { height: auto !important; }
+
+  /* Kontakt */
+  .m-sent { padding: 2rem 1.25rem !important; }
+  .m-map { height: 300px !important; }
+
+  /* Project detail */
+  .m-detail-head { padding: 2.5rem 1.25rem 2rem !important; }
+  .m-back { margin-bottom: 2rem !important; }
+  .m-meta { justify-content: flex-start !important; gap: 2.5rem !important; }
+  .m-gallery { padding: 2rem 1.25rem 3rem !important; }
+  .m-pn { padding: 1.5rem 1.25rem !important; }
+
+  /* Photo lightbox — controls move off the photo */
+  .m-lightbox { padding: 3rem 1.25rem 4.5rem !important; }
+  .m-lb-close { top: 0.25rem !important; right: 0.5rem !important; width: 40px !important; height: 40px !important; }
+  .m-lb-arrow { top: auto !important; bottom: 0.6rem !important; transform: none !important; }
+
+  /* Admin */
+  .m-admin { padding: 2rem 1.25rem 3rem !important; }
+
+  /* Footer */
+  .m-footer { padding: 3.5rem 1.25rem 3rem !important; }
+  .m-ig { margin: 0 !important; }
+  .m-copy { padding: 1.25rem !important; }
+}

@@ -49,8 +49,8 @@ const lightboxButton: React.CSSProperties = {
   width: '48px', height: '48px',
   borderRadius: '50%',
   border: 'none',
-  backgroundColor: 'rgba(250,250,249,0.12)',
-  color: '#fafaf9',
+  backgroundColor: 'rgba(250,250,249,0.85)',
+  color: '#1c1917',
   cursor: 'pointer',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
 }
@@ -64,6 +64,17 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
 }) {
   const hasPrev = index > 0
   const hasNext = index < images.length - 1
+  const touchStartX = useRef<number | null>(null)
+
+  // Swipe left / right to move between photos on touch screens
+  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    touchStartX.current = null
+    if (dx > 50 && hasPrev) onChange(index - 1)
+    if (dx < -50 && hasNext) onChange(index + 1)
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -84,18 +95,23 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
   return (
     <div
       onClick={onClose}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
       role="dialog"
+      className="m-lightbox"
       aria-modal="true"
       style={{
         position: 'fixed',
-        inset: 0,
+        // Starts below the 72px navbar so it stays visible
+        inset: '72px 0 0 0',
         zIndex: 200,
-        backgroundColor: 'rgba(12,10,9,0.95)',
+        backgroundColor: '#fafaf9',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
-        // Larger bottom padding keeps a strip free for the counter below the photo
-        padding: '2rem 2rem 4rem',
+        // Top matches the 6rem page offset of the other pages; larger bottom
+        // padding keeps a strip free for the counter below the photo
+        padding: '6rem 2rem 4rem',
       }}
     >
       <img
@@ -105,7 +121,7 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
       />
 
-      <button onClick={onClose} aria-label="Zavřít" style={{ ...lightboxButton, top: '1.25rem', right: '1.25rem' }}>
+      <button onClick={onClose} aria-label="Zavřít" className="m-lb-close" style={{ ...lightboxButton, top: '1.25rem', right: '1.25rem' }}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
         </svg>
@@ -115,6 +131,7 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
         <button
           onClick={(e) => { e.stopPropagation(); onChange(index - 1) }}
           aria-label="Předchozí foto"
+          className="m-lb-arrow"
           style={{ ...lightboxButton, left: '1.25rem', top: '50%', transform: 'translateY(-50%)' }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -127,6 +144,7 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
         <button
           onClick={(e) => { e.stopPropagation(); onChange(index + 1) }}
           aria-label="Další foto"
+          className="m-lb-arrow"
           style={{ ...lightboxButton, right: '1.25rem', top: '50%', transform: 'translateY(-50%)' }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -135,7 +153,7 @@ function Lightbox({ images, index, alt, onClose, onChange }: {
         </button>
       )}
 
-      <p style={{ position: 'absolute', bottom: '1.25rem', left: 0, right: 0, textAlign: 'center', fontSize: '0.75rem', letterSpacing: '0.15em', color: '#a8a29e' }}>
+      <p style={{ position: 'absolute', bottom: '1.25rem', left: 0, right: 0, textAlign: 'center', fontSize: '0.75rem', letterSpacing: '0.15em', color: '#78716c' }}>
         {index + 1} / {images.length}
       </p>
     </div>
@@ -160,10 +178,11 @@ export default function ProjektDetail() {
 
   return (
     // Extra bottom space (~2.5 cm) before the footer
-    <div style={{ paddingBottom: '6rem' }}>
+    <div className="m-pb-sm" style={{ paddingBottom: '6rem' }}>
 
       {/* Header */}
       <section
+        className="m-detail-head"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
@@ -173,6 +192,7 @@ export default function ProjektDetail() {
       >
         <Link
           to="/portfolio"
+          className="m-back"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -191,7 +211,7 @@ export default function ProjektDetail() {
           Zpět na portfolio
         </Link>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end' }}>
+        <div className="m-stack m-gap-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end' }}>
           <div>
             <h1
               style={{
@@ -207,7 +227,7 @@ export default function ProjektDetail() {
             </h1>
           </div>
 
-          <div style={{ display: 'flex', gap: '4rem', justifyContent: 'flex-end' }}>
+          <div className="m-meta" style={{ display: 'flex', gap: '4rem', justifyContent: 'flex-end' }}>
             {[
               { label: 'Lokace', value: project.location },
               { label: 'Rok', value: project.year },
@@ -224,7 +244,7 @@ export default function ProjektDetail() {
       </section>
 
       {/* Gallery */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 2rem 6rem' }}>
+      <section className="m-gallery" style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 2rem 6rem' }}>
         {gallery.length === 0 ? (
           <div
             style={{
@@ -240,7 +260,7 @@ export default function ProjektDetail() {
             </p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem 2rem' }}>
+          <div className="m-stack m-gap-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem 2rem' }}>
             {gallery.map((src, i) => (
               <GalleryImage
                 key={src}
@@ -276,6 +296,7 @@ export default function ProjektDetail() {
           {prev ? (
             <Link
               to={`/projekty/${prev.id}`}
+              className="m-pn"
               style={{ padding: '2.5rem 2rem', textDecoration: 'none', borderRight: '1px solid #e7e5e4' }}
             >
               <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '0.5rem' }}>
@@ -291,6 +312,7 @@ export default function ProjektDetail() {
           {next ? (
             <Link
               to={`/projekty/${next.id}`}
+              className="m-pn"
               style={{ padding: '2.5rem 2rem', textDecoration: 'none', textAlign: 'right' }}
             >
               <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#a8a29e', marginBottom: '0.5rem' }}>

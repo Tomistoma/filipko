@@ -3,10 +3,11 @@ import { CDN } from '../config'
 export default function ONas() {
   return (
     // Extra bottom space (~2 cm) before the footer
-    <div style={{ paddingBottom: '5rem' }}>
+    <div className="m-pb" style={{ paddingBottom: '5rem' }}>
 
       {/* 2-column main content */}
       <section
+        className="m-stack m-page"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
@@ -55,10 +56,11 @@ export default function ONas() {
         </div>
 
         {/* Right column — portrait + small centered quote below it */}
-        <div style={{ height: '100%', minHeight: '400px', display: 'flex', flexDirection: 'column' }}>
+        <div className="m-onas-side" style={{ height: '100%', minHeight: '400px', display: 'flex', flexDirection: 'column' }}>
           <img
             src={`${CDN}/images/filipo.jpg`}
             alt="Filip Kopáček"
+            className="m-onas-img"
             style={{
               width: '100%',
               flex: 1,

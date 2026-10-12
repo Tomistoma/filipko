@@ -10,8 +10,9 @@ export default function Portfolio() {
   return (
     <div>
       {/* Grid */}
-      <section style={{ padding: '6rem 2rem 8rem', maxWidth: '1280px', margin: '0 auto' }}>
+      <section className="m-page" style={{ padding: '6rem 2rem 8rem', maxWidth: '1280px', margin: '0 auto' }}>
         <div
+          className="m-stack"
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
