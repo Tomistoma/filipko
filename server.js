@@ -110,14 +110,15 @@ app.post('/api/contact', async (req, res) => {
 
 // Same code as GOATCOUNTER_CODE in src/config.ts
 const GOATCOUNTER_API = 'https://truhlarstvi.goatcounter.com/api/v0'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
+// Trimmed: a stray space pasted into the hosting config would make the password impossible to type
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD?.trim()
 const STATS_DAYS = 30
 const STATS_CACHE_MS = 60 * 1000
 
 let statsCache = null
 
 function isAdmin(req) {
-  const given = Buffer.from(String(req.get('authorization') || '').replace(/^Bearer /, ''))
+  const given = Buffer.from(String(req.get('authorization') || '').replace(/^Bearer /, '').trim())
   const expected = Buffer.from(ADMIN_PASSWORD)
   return given.length === expected.length && timingSafeEqual(given, expected)
 }

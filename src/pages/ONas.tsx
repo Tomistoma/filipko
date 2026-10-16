@@ -1,4 +1,5 @@
 import { CDN } from '../config'
+import podpis from '../assets/podpis.png'
 
 export default function ONas() {
   return (
@@ -49,9 +50,14 @@ export default function ONas() {
             <p style={{ fontSize: '1rem', color: '#57534e', lineHeight: 1.85 }}>
               Jsem vděčný, že mohu díky vám dělat práci, která mě naplňuje, a společně s vámi vytvářet místa, kam se budete rádi vracet.
             </p>
-            <p style={{ fontSize: '1.1rem', fontWeight: 400, color: '#1c1917', marginTop: '1.25rem', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1c1917', marginTop: '1.25rem', fontStyle: 'italic' }}>
               Děkuji vám za důvěru.
             </p>
+            <img
+              src={podpis}
+              alt="Podpis Filip Kopáček"
+              style={{ display: 'block', width: '220px', maxWidth: '60%', height: 'auto', marginTop: '1.5rem' }}
+            />
           </div>
         </div>
 

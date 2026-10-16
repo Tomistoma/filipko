@@ -76,18 +76,30 @@ export default function HlavniStranka() {
             padding: '4rem 0',
           }}
         >
-          <img
-            src={`${CDN}/images/poetrait.jpg`}
-            alt="Filip Kopáček"
-            className="m-fullw"
+          {/* Round crop on Filip: a 640px square of the 1333×2000 frame, from (120, 330) */}
+          <div
+            className="m-portrait"
             style={{
-              maxHeight: '520px',
-              width: 'auto',
-              maxWidth: '100%',
-              display: 'block',
-              objectFit: 'contain',
+              position: 'relative',
+              width: 'min(420px, 100%)',
+              aspectRatio: '1',
+              borderRadius: '50%',
+              overflow: 'hidden',
             }}
-          />
+          >
+            <img
+              src={`${CDN}/images/filipo.jpg`}
+              alt="Filip Kopáček"
+              style={{
+                position: 'absolute',
+                width: '208.3%',
+                left: '-18.75%',
+                top: '-51.6%',
+                maxWidth: 'none',
+                display: 'block',
+              }}
+            />
+          </div>
         </div>
       </section>
 
